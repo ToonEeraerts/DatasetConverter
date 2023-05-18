@@ -20,7 +20,7 @@ public class CurtoisConvertor {
         File file = new File(
                 "C:\\Users\\tonie\\Documents\\4de jaar unief\\Masterproef\\Datasets\\DatasetConverter\\DatasetConverter\\dataset Curtois\\instances1_24\\Instance" + x + ".txt");
         //Minizinc dataset
-        File fileMZ = new File("/DatasetConvertor/minizinc_datafiles/Instance" + x + "Mz.dzn");
+        File fileMZ = new File("/DatasetConvertor/dataset Curtois/minizinc_datafiles/Instance" + x + "Mz.dzn");
         BufferedReader br = new BufferedReader(new FileReader(file));
         BufferedWriter bw = new BufferedWriter(new FileWriter(fileMZ));
         String st;

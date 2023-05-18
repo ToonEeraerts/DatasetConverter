@@ -15,6 +15,7 @@ public class Main {
          */
 
         // NPSLib
-
+        NSPLibConvertor n = new NSPLibConvertor();
+        n.convertDataset();
     }
 }
