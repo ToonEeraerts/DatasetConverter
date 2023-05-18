@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         //Curtois dataset
-        int x = 1;
+        int x = 20;
         File file = new File(
                 "C:\\Users\\tonie\\Documents\\4de jaar unief\\Masterproef\\Datasets\\DatasetConverter\\DatasetConverter\\dataset Curtois\\instances1_24\\Instance" + x + ".txt");
         //Minizinc dataset
@@ -43,13 +43,13 @@ public class Main {
         }
         bw.append("amountOfShifts = " + amountOfShifts + ";\n");
         //shiftID
-        bw.append("shiftIDs = [s");
+        bw.append("shiftIDs = [");
         ArrayList<String> shiftIDs = new ArrayList<>();
         for(int i =0;i<amountOfShifts-1; i++){
             String shiftID = lines.get(i).split(",")[0];
             shiftIDs.add(shiftID);
             bw.append(shiftID);
-            bw.append(",s");
+            bw.append(",");
         }
         String shiftID = lines.get(amountOfShifts-1).split(",")[0];
         shiftIDs.add(shiftID);
@@ -112,13 +112,13 @@ public class Main {
         bw.append("amountOfEmployees = " + amountOfEmployees + ";\n");
 
         //employeeID
-        bw.append("employeeIDs = [");
+        bw.append("employeeIDs = [e");
         ArrayList<String> employeeIDs = new ArrayList<>();
         for(int i =0;i<amountOfEmployees-1; i++){
             String employeeID = lines.get(i).split(",")[0];
             employeeIDs.add(employeeID);
             bw.append(employeeID);
-            bw.append(",");
+            bw.append(",e");
         }
         String employeeID = lines.get(amountOfEmployees-1).split(",")[0];
         employeeIDs.add(employeeID);
@@ -242,7 +242,7 @@ public class Main {
         bw.append("amountOfShiftOnRequests = " + amountOfShiftOnRequests + ";\n");
 
         //ShiftOnRequests
-        bw.append("shiftOnRequests = array3d(" + employeeIDs.get(0) + ".." + employeeIDs.get(employeeIDs.size()-1) + ",0.." + (horizonLength-1) + ",s" + shiftIDs.get(0) + "..s" + shiftIDs.get(shiftIDs.size()-1) + ",[");
+        bw.append("shiftOnRequests = array3d(e" + employeeIDs.get(0) + "..e" + employeeIDs.get(employeeIDs.size()-1) + ",0.." + (horizonLength-1) + "," + shiftIDs.get(0) + ".." + shiftIDs.get(shiftIDs.size()-1) + ",[");
         String[] shiftOnRequest = new String[amountOfEmployees*horizonLength*amountOfShifts];
         Arrays.fill(shiftOnRequest, "0");
         for(int i =0;i<amountOfShiftOnRequests; i++){
@@ -277,7 +277,7 @@ public class Main {
         bw.append("amountOfShiftOffRequests = " + amountOfShiftOffRequests + ";\n");
 
         //ShiftOnRequests
-        bw.append("shiftOffRequests = array3d(" + employeeIDs.get(0) + ".." + employeeIDs.get(employeeIDs.size()-1) + ",0.." + (horizonLength-1) + ",s" + shiftIDs.get(0) + "..s" + shiftIDs.get(shiftIDs.size()-1) + ",[");
+        bw.append("shiftOffRequests = array3d(e" + employeeIDs.get(0) + "..e" + employeeIDs.get(employeeIDs.size()-1) + ",0.." + (horizonLength-1) + "," + shiftIDs.get(0) + ".." + shiftIDs.get(shiftIDs.size()-1) + ",[");
         String[] shiftOffRequest = new String[amountOfEmployees*horizonLength*amountOfShifts];
         Arrays.fill(shiftOffRequest, "0");
         for(int i =0;i<amountOfShiftOffRequests; i++){
@@ -308,7 +308,7 @@ public class Main {
         }
 
         //Requirement
-        bw.append("requirements = array2d(0.." + (horizonLength-1) + ",s" + shiftIDs.get(0) + "..s" + shiftIDs.get(shiftIDs.size()-1) +",[");
+        bw.append("requirements = array2d(0.." + (horizonLength-1) + "," + shiftIDs.get(0) + ".." + shiftIDs.get(shiftIDs.size()-1) +",[");
         for(int i = 0; i < horizonLength-1; i++){
             for(int j = 0; j < amountOfShifts; j++){
                 bw.append(lines.get(i*amountOfShifts+j).split(",")[2]).append(",");
@@ -321,7 +321,7 @@ public class Main {
         bw.append("]);\n");
 
         //Weight for under
-        bw.append("weightForUnder = array2d(0.." + (horizonLength-1) + ",s" + shiftIDs.get(0) + "..s" + shiftIDs.get(shiftIDs.size()-1) +",[");
+        bw.append("weightForUnder = array2d(0.." + (horizonLength-1) + "," + shiftIDs.get(0) + ".." + shiftIDs.get(shiftIDs.size()-1) +",[");
         for(int i = 0; i < horizonLength-1; i++){
             for(int j = 0; j < amountOfShifts; j++){
                 bw.append(lines.get(i*amountOfShifts+j).split(",")[3]).append(",");
@@ -334,7 +334,7 @@ public class Main {
         bw.append("]);\n");
 
         //Weight for over
-        bw.append("weightForOver = array2d(0.." + (horizonLength-1) + ",s" + shiftIDs.get(0) + "..s" + shiftIDs.get(shiftIDs.size()-1) +",[");
+        bw.append("weightForOver = array2d(0.." + (horizonLength-1) + "," + shiftIDs.get(0) + ".." + shiftIDs.get(shiftIDs.size()-1) +",[");
         for(int i = 0; i < horizonLength-1; i++){
             for(int j = 0; j < amountOfShifts; j++){
                 bw.append(lines.get(i*amountOfShifts+j).split(",")[4]).append(",");
